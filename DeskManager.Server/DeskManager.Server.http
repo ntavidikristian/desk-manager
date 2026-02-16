@@ -1,0 +1,6 @@
+@DeskManager.Server_HostAddress = http://localhost:5066
+
+GET {{DeskManager.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

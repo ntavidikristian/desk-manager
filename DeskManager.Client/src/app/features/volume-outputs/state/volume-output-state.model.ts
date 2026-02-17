@@ -3,7 +3,7 @@ export interface VolumeOutputStateModel {
   devices: Record<string, OutputDeviceState>;
 }
 
-interface OutputDeviceState {
+export interface OutputDeviceState {
   volume: number;
   muted: boolean;
   id: string;

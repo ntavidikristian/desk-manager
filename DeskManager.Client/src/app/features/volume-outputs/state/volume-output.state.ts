@@ -29,7 +29,7 @@ export class VolumeOutputState {
             console.warn(volume + ' volume was retured from backend');
             return;
           }
-          this.store.dispatch(new VolumeOutputActions.ServerSetVolume(volume));
+          this.store.dispatch(new VolumeOutputActions.ServerSetVolume(Math.floor(volume)));
         },
       );
     }, 3000);

@@ -1,3 +1,14 @@
-<mat-slider>
-  <input matSliderThumb [ngModel]="volume()" (ngModelChange)="volume.set($event)">
-</mat-slider>
+
+<div class="card">
+  <mat-slider style="width: 40rem;">
+    <input (dragStart)="isDragging.set(true)" (dragEnd)="isDragging.set(false)" matSliderThumb [ngModel]="volume()"
+      (ngModelChange)="volume.set($event)">
+  </mat-slider>
+  
+  {{serverVolume()}}
+  
+  <div>
+  
+  </div>
+   {{isDragging()}}
+</div>

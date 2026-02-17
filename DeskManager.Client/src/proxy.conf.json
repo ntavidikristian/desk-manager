@@ -1,0 +1,8 @@
+{
+    "/ws":{
+        "target":"http://localhost:5066",
+        "secure":false,
+        "ws": true,
+        "changeOrigin":true
+    }
+}

@@ -22,17 +22,18 @@ public class AudioManagerService : BackgroundService
 
     protected override Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        
-
         return Task.CompletedTask; // event-driven, no loop needed
     }
 
     private void OnVolumeChanged(AudioVolumeNotificationData data)
     {
-        Console.WriteLine($"Volume changed: {data.MasterVolume}");
+        Console.WriteLine($"Volume changed from event: {data.MasterVolume}");
 
         // Fire and forget safely
         _ = _hubContext.Clients.All
-            .SendAsync("VolumeChange", data.MasterVolume);
+            .SendAsync("volumeChange", new
+            {
+                Volume = data.MasterVolume * 100
+            });
     }
 }

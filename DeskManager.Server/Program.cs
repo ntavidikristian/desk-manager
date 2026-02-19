@@ -28,7 +28,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddHostedService<AudioManagerService>();
-builder.Services.AddSingleton<WebsocketManagerService>();
+builder.Services.AddSingleton<WebSocketSubscriptionsService>();
 builder.Services.AddSignalR();
 builder.Services.AddControllers();
 

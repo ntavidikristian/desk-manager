@@ -10,13 +10,13 @@ import {
 import { FormsModule } from '@angular/forms';
 import { MatSliderModule } from '@angular/material/slider';
 import { Store } from '@ngxs/store';
-import { VolumeOutputActions } from './features/volume-outputs/state/volume-output.actions';
 import { VolumeOutputStateSelectors } from './features/volume-outputs/state/volume-output-state.selector';
-import { CdkDrag } from '@angular/cdk/drag-drop';
+import { VolumeOutputActions } from './features/volume-outputs/state/volume-output.actions';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, MatSliderModule],
+  imports: [FormsModule, MatSliderModule, MatCardModule],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
@@ -24,11 +24,18 @@ export class App {
   protected readonly title = signal('DeskManager.Client');
   private readonly store = inject(Store);
 
-  private readonly deviceState = this.store.selectSignal(
-    VolumeOutputStateSelectors.selectDeviceState('mydevice'),
+  protected readonly outputDevices = this.store.selectSignal(
+    VolumeOutputStateSelectors.SelectOutputDevices,
   );
 
-  protected readonly serverVolume = computed(() => this.deviceState()?.volume);
+  private readonly defaultDeviceId = this.store.selectSignal(
+    VolumeOutputStateSelectors.SelectDefaultDevice,
+  );
+  private readonly deviceState = computed(() =>
+    this.store.selectSignal(VolumeOutputStateSelectors.selectDeviceState(this.defaultDeviceId())),
+  );
+
+  protected readonly serverVolume = computed(() => this.deviceState()()?.volume);
 
   protected readonly isDragging = signal(false);
 

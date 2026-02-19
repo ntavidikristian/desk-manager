@@ -1,14 +1,23 @@
+<mat-card>
+  <mat-card-content>
+    @for (item of outputDevices(); track $index) {
+    <div>
+      {{item.name}} {{item.volume}} {{item.state}}
+    </div>
+    }
+  </mat-card-content>
+</mat-card>
 
 <div class="card">
   <mat-slider style="width: 40rem;">
     <input (dragStart)="isDragging.set(true)" (dragEnd)="isDragging.set(false)" matSliderThumb [ngModel]="volume()"
       (ngModelChange)="volume.set($event)">
   </mat-slider>
-  
+
   {{serverVolume()}}
-  
+
   <div>
-  
+
   </div>
-   {{isDragging()}}
+  {{isDragging()}}
 </div>

@@ -8,6 +8,16 @@ export class VolumeOutputStateSelectors {
     return state.devices;
   }
 
+  @Selector([VolumeOutputState])
+  public static SelectOutputDevices(state: VolumeOutputStateModel) {
+    return Object.values(state.devices);
+  }
+
+  @Selector([VolumeOutputState])
+  public static SelectDefaultDevice(state: VolumeOutputStateModel) {
+    return state.defaultDeviceId;
+  }
+
   public static selectDeviceState(deviceId: string) {
     return createSelector(
       [VolumeOutputStateSelectors.SelectDevices],
